@@ -106,6 +106,7 @@ public class Faker {
     private final Barcode barcode;
     private final Sip sip;
     private final EnglandFootBall englandfootball;
+    private final FlightNumbers flightNumbers;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -159,6 +160,7 @@ public class Faker {
         this.code = new Code(this);
         this.file = new File(this);
         this.finance = new Finance(this);
+        this.flightNumbers = new FlightNumbers(this);
         this.food = new Food(this);
         this.gameOfThrones = new GameOfThrones(this);
         this.gender = new Gender(this);
@@ -455,6 +457,10 @@ public class Faker {
 
     public Finance finance() {
         return finance;
+    }
+
+    public FlightNumbers flightNumbers() {
+        return flightNumbers;
     }
 
     public Food food() {
