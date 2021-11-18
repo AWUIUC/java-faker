@@ -1,6 +1,7 @@
 package com.github.javafaker;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class Options {
     private final Faker faker;
@@ -51,5 +52,33 @@ public class Options {
      */
     public <E> E nextElement(List<E> list) {
         return list.get(faker.random().nextInt(list.size()));
+    }
+
+    /**
+     * Returns a random subset of the list passed in
+     * @param list The list to take the random subset from. 
+     * @param <E> The type of the elements in the list. 
+     * @return A random subset of the list passed in. 
+     */
+    public <E> List<E> randomSubset(List<E> list) {
+        int inputListSize = list.size();
+        int subsetSize = faker.random().nextInt(inputListSize);
+        
+        //Ensure we get a non-empty subset when possible
+        if (inputListSize != 0) {
+            while (subsetSize <= 0) {
+                subsetSize = faker.random().nextInt(inputListSize);
+            }
+        }
+
+        List<E> toReturn = new ArrayList<E>();
+        List<E> inputListCopy = new ArrayList<E>(list);
+        
+        for (int i = 0; i < subsetSize; i++) {
+            int currListSize = inputListCopy.size();
+            E toAdd = inputListCopy.remove(faker.random().nextInt(currListSize));
+            toReturn.add(toAdd);
+        }
+        return toReturn;
     }
 }
