@@ -1,6 +1,0 @@
-<FindBugsFilter>
-    <Match>
-        <Class name="com.javafaker.FlightNumbers"/>
-        <Prioirity value="2" />
-    </Match>
-</FindBugsFilter>

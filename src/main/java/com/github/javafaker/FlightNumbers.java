@@ -5,26 +5,27 @@ import java.util.Random;
 public class FlightNumbers {
     //faker object added here to emulate code in other files
     private final Faker faker;
+    private Random rand;
 
     //Constructor added here to emulate code in other files
     protected FlightNumbers(Faker faker) {
         this.faker = faker;
+        this.rand = new Random();
     }
 
     public String generateFlightString() {
-        Random rand = new Random();
-        int random_int1 = rand.nextInt(10); //Generates random number from 0 to 9
-        int random_int2 = rand.nextInt(10); //https://www.educative.io/edpresso/how-to-generate-random-numbers-in-java
-        int random_int3 = rand.nextInt(10);
-        int random_int4 = rand.nextInt(10);
+        int random_int1 = this.rand.nextInt(10); //Generates random number from 0 to 9
+        int random_int2 = this.rand.nextInt(10); //https://www.educative.io/edpresso/how-to-generate-random-numbers-in-java
+        int random_int3 = this.rand.nextInt(10);
+        int random_int4 = this.rand.nextInt(10);
 
-        char char1 = (char)(rand.nextInt(26) + 'A'); //Generates random uppercase character
-        char char2 = (char)(rand.nextInt(26) + 'A'); //https://stackoverflow.com/questions/2626835/is-there-functionality-to-generate-a-random-character-in-java
-        char char3 = (char)(rand.nextInt(26) + 'A');
+        char char1 = (char)(this.rand.nextInt(26) + 'A'); //Generates random uppercase character
+        char char2 = (char)(this.rand.nextInt(26) + 'A'); //https://stackoverflow.com/questions/2626835/is-there-functionality-to-generate-a-random-character-in-java
+        char char3 = (char)(this.rand.nextInt(26) + 'A');
 
-        String toReturn = new String(""); //https://www.baeldung.com/java-string-initialization 
+        String toReturn = ""; //https://www.baeldung.com/java-string-initialization 
 
-        int numLettersInName = 2 + rand.nextInt(1); //Get number of letters to include in flight number (either 2 or 3)
+        int numLettersInName = 2 + this.rand.nextInt(1); //Get number of letters to include in flight number (either 2 or 3)
 
         if (numLettersInName == 2) {
             String toAppend1 = String.valueOf(char1); //https://www.javatpoint.com/java-char-to-string
@@ -41,7 +42,7 @@ public class FlightNumbers {
             toReturn = toReturn + toAppend3;
         }
 
-        int numDigitsInName = 1 + rand.nextInt(3); //Get number of digits to include in flight number (either 1, 2, 3, or 4)
+        int numDigitsInName = 1 + this.rand.nextInt(3); //Get number of digits to include in flight number (either 1, 2, 3, or 4)
 
         if (numDigitsInName == 1) {
             String toAppend1 = String.valueOf(random_int1);
@@ -75,16 +76,18 @@ public class FlightNumbers {
     }
 
     public String generateAirlineString() {
-        Random rand = new Random();
         String toReturn = faker.fakeValuesService().resolve("country.name", this, faker); //Uses code similar to that in Country.java which uses country.yml
-        int randomCombo = rand.nextInt(3);
+        int randomCombo = this.rand.nextInt(3);
         if (randomCombo == 0) {
-            toReturn = toReturn + new String(" Air");
+            //toReturn = toReturn + new String(" Air");
+            toReturn = toReturn + " Air";
         } else if (randomCombo == 1) {
-            toReturn = toReturn + new String(" Airlines");
+            // toReturn = toReturn + new String(" Airlines");
+            toReturn = toReturn + " Airlines";
         } else {
             //randomCombo == 2
-            toReturn = new String("Air ") + toReturn;
+            //toReturn = new String("Air ") + toReturn;
+            toReturn = "Air " + toReturn;
         }
         return toReturn;
     }
