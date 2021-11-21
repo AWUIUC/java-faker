@@ -64,6 +64,12 @@ public class OptionsTest extends AbstractFakerTest {
         }
     }
 
+    /**
+     * This test is used to print out/log a randomly selected subset of a list of integers
+     * We do this because we want to manually check that the function we wrote is working as intended
+     * We also print out the set before and after the subset selection because we want to confirm that our function call
+     *      didn't accidentally change any of the elements of the original set
+     */
     @Test
     @Repeat(times=5)
     public void testRandomSubset1() {

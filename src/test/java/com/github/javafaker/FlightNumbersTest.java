@@ -10,6 +10,9 @@ import static org.junit.Assert.assertEquals;
 public class FlightNumbersTest extends AbstractFakerTest {
     private static final Logger logger = LoggerFactory.getLogger(FlightNumbersTest.class);
 
+    /**
+     * This test is used to confirm that our logger is working correctly as we intended it to
+     */
     @Test
     public void testCode() {
         for (int i = 0; i < 10; i++) {
@@ -17,11 +20,17 @@ public class FlightNumbersTest extends AbstractFakerTest {
         }
     }
 
+    /** 
+     * This test is used to print out/log a randomly generated flight string so we can manually confirm that the function is working as intended. 
+     */
     @Test 
     public void testCode2() {
         logger.info("Testing generating random flight: {}", faker.flightNumbers().generateFlightString());
     }
 
+    /** 
+     * This test is used to print out/log a randomly generated airline name so we can manually confirm that the function is working as intended. 
+     */
     @Test 
     public void testCode3() {
         logger.info("Testing generating random airline name: {}", faker.flightNumbers().generateAirlineString());

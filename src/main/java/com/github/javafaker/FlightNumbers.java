@@ -13,6 +13,11 @@ public class FlightNumbers {
         this.rand = new Random();
     }
 
+    /**
+     * This function returns a string representing either a randomly generated ICAO flight number, or a randomly generated IATA flight number
+     * @param - No input needed
+     * @return - String 
+     */
     public String generateFlightString() {
         int random_int1 = this.rand.nextInt(10); //Generates random number from 0 to 9
         int random_int2 = this.rand.nextInt(10); //https://www.educative.io/edpresso/how-to-generate-random-numbers-in-java
@@ -75,6 +80,11 @@ public class FlightNumbers {
 
     }
 
+    /**
+     * This function returns a string representing a randomly generated airline name
+     * @param - No input needed
+     * @return - String 
+     */
     public String generateAirlineString() {
         String toReturn = faker.fakeValuesService().resolve("country.name", this, faker); //Uses code similar to that in Country.java which uses country.yml
         int randomCombo = this.rand.nextInt(3);
