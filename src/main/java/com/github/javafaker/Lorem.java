@@ -158,6 +158,20 @@ public class Lorem {
         return StringUtils.substring(builder.toString(), 0, numberOfLetters);
     }
 
+    /* 
+     * Create a string of spaced words with fixed length. 
+     */
+    public String maxLengthSentence(int maxCharacters) {
+        //Estimate number of words as maxCharacters/5, then add 1 to prevent wordCount from being = 0
+        int wordCount = maxCharacters/5 + 1;
+        
+        //Creates a string/sentence with a fixed number of words: sentence(wordCount, 0)
+        //Then indexes the string/sentence from 0 to maxCharacters
+        //Finally trims off any whitespace from the beginning or end of that sentence and returns it
+        return sentence(wordCount, 0).substring(0, maxCharacters).trim();
+    }
+
+
     static {
         StringBuilder builder = new StringBuilder(36);
         for (char character = 'a'; character <= 'z'; character++) {

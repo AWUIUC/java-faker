@@ -1,5 +1,7 @@
 package com.github.javafaker;
 
+import com.github.javafaker.repeating.Repeat;
+
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasSize;
@@ -9,10 +11,42 @@ import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
 public class LoremTest extends AbstractFakerTest {
+    private static final Logger logger = LoggerFactory.getLogger(LoremTest.class);
+
+    /* 
+     * This test was created to understand the issue here: https://github.com/DiUS/java-faker/issues/666 
+     */
+    @Test 
+    public void obtainIssueUnderstanding() {
+        //Create random sentence of 255 random characters 
+        logger.info("TESTING UNDERSTANDING of faker.lorem().characters(255): {}", faker.lorem().characters(255));
+
+        //Creates a sentence with a random number of words: between 10 + 1, and 10 + 6 --> between 11 and 16 words
+        logger.info("TESTING UNDERSTANDING of faker.lorem().sentence(10): {}", faker.lorem().sentence(10));
+
+        //Get first 5 characters of a randomly generated sentence (possibly different from the one above) with a random number of words (between 10 + 1, and 10 + 6)
+        logger.info("TESTING UNDERSTANDING of faker.lorem().sentence(10).substring(0, 5): {}", faker.lorem().sentence(10).substring(0, 5));
+        
+        //Get rid of leading and trailing whitespace
+        logger.info("TESTING UNDERSTANDING of faker.lorem().sentence(10).substring(0, 5).trim(): {}", faker.lorem().sentence(10).substring(0, 5).trim());
+    }
+
+    /* 
+     * This test was created to test the solution to the issue here: https://github.com/DiUS/java-faker/issues/666 
+     * We perform the test by manually inspecting the output to ensure it meets the requirements
+     */
+    @Test
+    @Repeat(times=10)
+    public void testIssue666() {
+        logger.info("TESTING SOLUTION TO ISSUE 666: {}", faker.lorem().maxLengthSentence(10));
+    }
 
     @Test
     public void shouldCreateFixedLengthString() {
